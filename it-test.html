@@ -56,62 +56,273 @@
 
     <!-- Intro Content -->
       <div>
-        <h2>Requirements</h2>
-        <h3>Functional Requirements</h3>
-        <p>The following are the functional requirements for the system:</p>
+        <h2>Integration Testing</h2>
+        <p>Integration test is the first step of the test plan where phases of the system are identified,  and the system components are tested within those phases. The ETL Utility system has a clear distinction between three different modules: Extraction, Transformation, and Loading. Additionally, each module of the utility is dependent on the previous module, creating a need to build and test the extraction module first and the load module last. Given these conditions, the system's integration testing will occur in three phases, each corresponding to a module according to the system architecture. </p>
+        <p>Dividing the testing process into separate phases will ensure that testing can be focused appropriately and align with the critical path of the system’s overall development. This also ensures that defects are identified early and can easily be attributed to the currently tested module.</p>
+        <p>Following this approach, the integration testing process begins with the module that is required for the other two modules to function, Extraction. Following extraction, transformation will be tested, and lastly, loading. Since this test plan follows the dependency path between these modules, the foundations will be solidified, and high priority defects addressed before proceeding to the next module. Brief testing strategies per each module have been identified</p>
         <br/>
         <ul>
-          <li>FR-1. The application shall allow caregivers and patients to register an account.</li>
-          <li>FR-2. The application shall provide a user interface to allow its user to access their metrics and update their personal information.</li>
-          <li>FR-3. The application shall enable notifications to be sent to the requested parties.</li>
-          <li>FR-4. The application shall interface with various technologies such as wearable technologies, mobile phones, and desktop computers.</li>
-          <li>FR-5. The application shall allow direct communication between the doctor and caregiver.</li>
-          <li>FR-6 The application shall warn the caregiver and doctor if the patient's blood oxygen decreases rapidly.</li>
-          <li>FR-7 The application shall warn the caregiver and doctor if there are any medical anomalies.</li>
-          <li>FR-8. The application shall support patients' and caregivers' ability to create appointment reminders and alerts for a wide range of medical issues and tasks.</li>
-          <li>FR-9. The application shall support external fingerprint scanning for extra security.</li>
-          <li>FR-10. The application shall have a backup way to sign in and out in case of a fingerprint scanner error.</li>
-          <li>FR-11. The application shall exist between different mobile operating systems such as iOS and Android.</li>
-          <li>FR-12. The application shall provide geolocation to help find a patient in case of an emergency.</li>
-          <li>FR-13. The application shall allow bidirectional synchronous communication between the user and the data source in real-time.</li>
+          <li>Extraction: During the integration testing for extraction, each type of source data and data fields will be verified against the utility to ensure that the module works as expected. </li>
+          <li>Transformation: During the integration testing for the transformation, each data type will be tested to ensure all transformations work as expected. These tests ensure that all the data is converted into the expected format and displayed appropriately.</li>
+          <li>Loading: During the integration testing for the loading module, all types of target systems outlined in the requirements will be verified to ensure that they function as expected.</li>
         </ul>
         <br/>
-        <h3>Non-Functional Requirements</h3>
-        <p>These Non-Functional requirements impose constraints under which the application we are developing has to function. The following are the requirements that we are explicitly defining and hold for each customer instance.</p>
-        <h4>Architecture:</h4>
-        <ul>
-          <li>NFR-1. Allow for disparate data sources to be ingested in a multi-tenant and performant manner. (Apache Kafka or Kinesis streams)</li>
-          <li>NFR-2. Multiple location cloud production environments.</li>
-          <li>NFR-3. Containerized services for quick swapping/ability for hybrid strategy in the future.</li>
-          <li>NFR-4. Web and mobile endpoints that help collect and analyze data, multi-role users.</li>
-        </ul>
-        <h4>Security:</h4>
-        <ul>
-          <li style="font-weight: 400;"><span style="font-weight: 400;">NFR-5. The application must comply with HIPAA regulations.</span></li>
-          <li style="font-weight: 400;"><span style="font-weight: 400;">NFR-6. Only run on specific versions of devices for security reasons.</span></li>
-          <li style="font-weight: 400;"><span style="font-weight: 400;">NFR-7. Data storage must conform to HIPAA and FEDRAMP requirements.</span></li>
-        </ul>
-        <h4>Safety:</h4>
-        <ul>
-          <li>NFR-8. Data from the database will never be transmitted to unauthenticated sources.</li>
-          <li>NFR-9. The application will never disclose patient information to users that are not authorized to see it.</li>
-        </ul>
-        <h4>Availability:</h4>
-        <ul>
-          <li>NFR-10. The application should be available 99.99% of the time.</li>
-        </ul>
-        <h4>Performance:</h4>
-        <ul>
-          <li>NFR-11. The application shall take no more than 2 seconds to access.</li>
-          <li>NFR-12. The application's fingerprint scanning shall recognize registered users 95% of the time.</li>
-          <li>NFR-13. The application shall take the appropriate measures to ensure data servers are secured.</li>
-          <li>NFR-14. Data backups should be created daily (minimum).</li>
-          <li>NFR-15. Data backups should be securely stored separately.</li>
-          <li>NFR-16. A private REST API should be available for third-party, desktop, or mobile application integration.</li>
-          <li>NFR-17. The access to all data should take a least privilege approach.</li>
-          <li>NFR-18. Data streaming should be processed near real-time.</li>
-          <li>NFR-19. The application shall have the ability to change out algorithms for smart altering.</li>
-        </ul>
+        <h3>Extraction</h3>
+        <h5>Summary Test Procedure</h5>
+        <p>The purpose of the extraction module is to ensure the system can source data from multiple file formats to be then transformed. The foundation for this system is to identify new or modified data from the source systems so that the target system can use it.  The other system modules require that the extraction module be complete and correct for the system to function as a whole. Thus, the extraction module should be tested first, and the test cases identified highlight each source system identified in the requirements. Figure 2 shows the modules that form the Extract Subsystem. The arrows represent the order of integration, i.e., integration testing.</p>
+        <img src="./images/Extraction.png" alt="figure 2">
+        <h6>Figure 2. Module of Extract Subsystem</h6>
+        <h5>Test Cases</h5>
+        <p>The table below outlines the tests required for the extraction in the ETL Utility, along with the expected results of the test case.</p>
+        <table>
+          <tbody>
+          <tr>
+          <td>
+          <p>Test Case #</p>
+          </td>
+          <td>
+          <p>Description&nbsp;</p>
+          </td>
+          <td>
+          <p>Expected Result</p>
+          </td>
+          </tr>
+          <tr>
+          <td>
+          <p>IT-1</p>
+          </td>
+          <td>
+          <p>Watcher -&gt; Event Dispatcher</p>
+          </td>
+          <td>
+          <p>Verify that the Watcher is notified about the change. Verify that the Event Dispatcher is triggered.&nbsp;</p>
+          </td>
+          </tr>
+          <tr>
+          <td>
+          <p>IT-2</p>
+          </td>
+          <td>
+          <p>Event Dispatcher -&gt; Extraction Module</p>
+          </td>
+          <td>
+          <p>Verify that the Event Dispatcher created an event with a copy of the updated data. Verify that the Event Dispatcher has notified the Extractor.</p>
+          </td>
+          </tr>
+          <tr>
+          <td>
+          <p>IT-3</p>
+          </td>
+          <td>
+          <p>Extraction Module -&gt; Updating Existing Data</p>
+          </td>
+          <td>
+          <p>In the source document, make a change to the existing data and validate that the new changes were extracted.</p>
+          </td>
+          </tr>
+          <tr>
+          <td>
+          <p>IT-4</p>
+          </td>
+          <td>
+          <p>Extraction Module -&gt; Creating New Data</p>
+          </td>
+          <td>
+          <p>In the source document, make a new record in the data and validate that the new record was extracted.</p>
+          </td>
+          </tr>
+          <tr>
+          <td>
+          <p>IT-5</p>
+          </td>
+          <td>
+          <p>Extraction Module -&gt; JSON datasource</p>
+          </td>
+          <td>
+          <p>Using a JSON datasource, make a new record and modify an existing record to ensure changes are captured.</p>
+          </td>
+          </tr>
+          <tr>
+          <td>
+          <p>IT-6</p>
+          </td>
+          <td>
+          <p>Extraction Module -&gt; SQL database&nbsp;</p>
+          </td>
+          <td>
+          <p>Using a SQL database datasource, make a new record and modify an existing record to ensure changes are captured.</p>
+          </td>
+          </tr>
+          <tr>
+          <td>
+          <p>IT-7</p>
+          </td>
+          <td>
+          <p>Extraction Module -&gt; CSV datasource</p>
+          </td>
+          <td>
+          <p>Using a CSV datasource, make a new record and modify an existing record to ensure changes are captured.</p>
+          </td>
+          </tr>
+          <tr>
+          <td>
+          <p>IT-8</p>
+          </td>
+          <td>
+          <p>Extraction Module -&gt; XML datasource</p>
+          </td>
+          <td>
+          <p>Using a XML datasource, make a new record and modify an existing record to ensure changes are captured.</p>
+          </td>
+          </tr>
+          </tbody>
+          </table>
+          <br/>
+          <h3>Transformation</h3>
+        <h5>Summary Test Procedure</h5>
+        <p>The purpose of the transformation module is to ensure the system can convert the extracted data into the necessary formats so that it can be loaded in another data source. Figure 3 shows the modules that will form the Transform Subsystem. </p>
+        <img src="./images/Transform.png" alt="figure 3">
+        <h6>Figure 3. Module of Tranform Subsystem</h6>
+        <h5>Test Cases</h5>
+        <p>The table below outlines the tests required for the transformation in the ETL Utility, along with the expected results of the test case.</p>
+        <table>
+          <tbody>
+          <tr>
+          <td>
+          <p>Test Case #</p>
+          </td>
+          <td>
+          <p>Description&nbsp;</p>
+          </td>
+          <td>
+          <p>Expected Result</p>
+          </td>
+          </tr>
+          <tr>
+          <td>
+          <p>IT-9</p>
+          </td>
+          <td>
+          <p>Date Transformer -&gt; Data Transformer</p>
+          </td>
+          <td>
+          <p>Verify that Date is correctly transforming string-based dates (YYYYMMDD) into a UTC Date Object YYYY-MM-DDT00:00:00+00:00.</p>
+          </td>
+          </tr>
+          <tr>
+          <td>
+          <p>IT-10</p>
+          </td>
+          <td>
+          <p>Boolean Transformer -&gt; Data Transformer</p>
+          </td>
+          <td>
+          <p>Verify that the Boolean Transformer is correctly transforming the string-based boolean data to a true boolean.</p>
+          </td>
+          </tr>
+          <tr>
+          <td>
+          <p>IT-11</p>
+          </td>
+          <td>
+          <p>Lookup Transformer - &gt; Data Transformer</p>
+          </td>
+          <td>
+          <p>Verify that the Lookup Transformer is correctly transforming the lookup key into a more complex object that contains the values that the key represents.</p>
+          </td>
+          </tr>
+          <tr>
+          <td>
+          <p>IT-12</p>
+          </td>
+          <td>
+          <p>Address Verification Transformer -&gt; Data Transformer</p>
+          </td>
+          <td>
+          <p>Verify that the Address Verification Transformer is correctly verifying the existence of the postal address.Verify that the postal address is correctly formatted by the third-party verification service. Verify that the transformed data is in the destination acceptable format.</p>
+          </td>
+          </tr>
+          </tbody>
+          </table>
+          <br/>
+          <h3>Loading</h3>
+        <h5>Summary Test Procedure</h5>
+        <p>The purpose of the load module is to load the transformed data using a collection of load objects and load that data into its respective destination. Figure 4 shows the modules that will form the Load Subsystem.</p>
+        <img src="./images/Load.png" alt="figure 3">
+        <h6>Figure 4. Module of Load</h6>
+        <h5>Test Cases</h5>
+        <p>The table below outlines the tests required for the loading in the ETL Utility, along with the expected results of the test case.</p>
+        <table>
+          <tbody>
+          <tr>
+          <td>
+          <p>Test Case #</p>
+          </td>
+          <td>
+          <p>Description&nbsp;</p>
+          </td>
+          <td>
+          <p>Expected Result</p>
+          </td>
+          </tr>
+          <tr>
+          <td>
+          <p>IT-13</p>
+          </td>
+          <td>
+          <p>Input Buffer &gt; JSON</p>
+          </td>
+          <td>
+          <p>Validate that transformed records can be transferred to a JSON format.</p>
+          </td>
+          </tr>
+          <tr>
+          <td>
+          <p>IT-14</p>
+          </td>
+          <td>
+          <p>Input Buffer &gt; SQL Database</p>
+          </td>
+          <td>
+          <p>Validate that transformed records can be transferred to a SQL database format.</p>
+          </td>
+          </tr>
+          <tr>
+          <td>
+          <p>IT-15</p>
+          </td>
+          <td>
+          <p>Input Buffer &gt; CSV</p>
+          </td>
+          <td>
+          <p>Validate that transformed records can be transferred to a CSV format.</p>
+          </td>
+          </tr>
+          <tr>
+          <td>
+          <p>IT-16</p>
+          </td>
+          <td>
+          <p>Input Buffer &gt; XML</p>
+          </td>
+          <td>
+          <p>Validate that transformed records can be transferred to an XML format.</p>
+          </td>
+          </tr>
+          <tr>
+          <td>
+          <p>IT-17</p>
+          </td>
+          <td>
+          <p>Transformation Output&nbsp;</p>
+          </td>
+          <td>
+          <p>Validate that the transformed data is sent to the load module.</p>
+          </td>
+          </tr>
+          </tbody>
+          </table>
+          <br />
       </div>
    
     <!-- /.row -->

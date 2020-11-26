@@ -56,18 +56,351 @@
 
     <!-- Intro Content -->
       <div>
-        <h2>Use Cases</h2>
+        <h2>Testing Scope and Strategy</h2>
         <div>
-          <h3>Scenario 1.</h3>
-            <p>James is the primary caregiver and sole decision-maker for his 80-year-old mother, Mrs. Alfred, who was diagnosed with early-onset Alzheimer's disease. Mrs. Alfred lives at home with her 81-year-old husband, Mr. Alfred, who has a series of health issues of his own, which enables him to be his wife's primary caregiver. On some occasions, she struggles with remembering where she is, figuring out what she is supposed to do for the day, feeling confused and disoriented, trouble perceiving time and dates, and having difficulty communicating with others. Unfortunately, James' full-time position does not allow him to manage his mother's care, so he has to rely on sending her text reminders of what she is supposed to be doing for the day, especially reminding her about her medication. James also calls and speaks to his father to ensure that she is on the right track.</p>
-            <p>Despite her Alzheimer's disease, Mrs. Alfred loved to take her afternoon walks around he neighborhood by herself and returned home on her own within 1 hour. One afternoon, Mr. Alfred had noticed that his wife had not returned from her regular afternoon stroll. Due to his health condition, Mr. Alfred could not walk around the neighborhood to search for his wife. Mr. Alfred reached out to his son, James, to inform him that Mrs. Alfred had not returned home. Concerned, James immediately left his job and began heading towards his parents' neighborhood to search for his mother. James had searched for about a 1 hour around the neighborhood, asking neighbors if they had seen his mother walking around.</p>
-            <!--TODO: Fix figures-->
-            <p>Given that it was soon to become dark out, James returned to his parents' home to call the police to report her missing. As he began to walk towards his parents' door, a neighbor came up behind him with his mother. The neighbor told James that she had found Mrs. Alfred at a nearby park sitting on a park bench. James was pleased and relieved that his mother was returned safely home by a neighbor. James would love to have a much better way of tracking his mother quicker if she should go missing again. With EDNA care, James would have been able to locate his mother more accurately and efficiently by utilizing the app's GPS portion if she had worn a wearable device linked to the application. (See Figure 3).</p>
+          <h3>Testing Scope</h3>
+          <p>The following system components and their related features are considered to be in scope for testing.</p>
+          <ul>
+            <li>Extraction: The extraction process for retrieving the data from several different file formats and sources is a minimum requirement for the rest of the system to function correctly and requires testing from each point.</li>
+            <li>Transformation: The transformation process should be tested to ensure all data is transformed into the necessary format and all fields display true values.</li>
+            <li>Loading: The loading process requires to be tested to ensure that data is captured and stored in the correct location so that it can be used by the stakeholders.</li>
+            <li>Synchronous Pipes: Multiple events may trigger the ETL process at the same time, so testing synchronous pipes is required to ensure that the data is loaded appropriately in a timely manner.</li>
+            <li>Integrity: The integrity of the data that is loaded as the final product needs to be validated to ensure that the entire process works as expected and the data is usable and correct.</li>
+            <li>Error Handling: The system should be tested with data formats that are irregular and may not be recognized by the system to ensure that the errors are logged and handled appropriately.</li>
+          </ul>
+          <p>The following system components are considered out of scope for testing:</p>
+          <ul>
+            <li>User Interface: The user interface is out of scope since it was not included in the original design of the system</li>
+            <li>Security: Security and privacy testing is out of scope since the ETL system will be hosted on a platform that will regulate such protocols and testing</li>
+            <li>Reliability: uptime of the system is out of scope since the platform hosting the ETL system will assume responsibility for meeting all SLAs</li>
+          </ul>
+
         </div>
-        <img src="./images/figure3.PNG" alt="figure 3">
-        <h3>Scenario 2.</h3>
-            <p>Jennifer is a thirty-five-year-old mother to Emily, who is 12. Emily is a sweet girl who enjoys reading, dancing, hanging out with friends and family, and drawing. Emily’s epilepsy journey started when she was just three years old. At the age of 8, Emily started having frequent seizures, and Jennifer had to increase her medication dosage. However, the medication came with multiple side effects; Emily would fall asleep in class, take naps at school, felt depressed and fatigued. In addition to that, Emily was also full of anxiety, she was not growing, and she would shy away from her family. Jennifer recognized that the medication was not helping, so she decided to place Emily on a diet to help with her seizures. To her surprise, the diet worked, and Emily was growing and back to her joyful self. After a few years, Jennifer weaned Emily off the diet, and she remained relatively seizure-free.</p>
-            <p>One late night, Jennifer was awakened by a noise that she could not make out. She walked out of her bedroom and saw that the hallway bathroom light was on, and the door was closed. She waited a few seconds, and she heard the noise again coming from the bathroom. Jennifer immediately ran to the bathroom to find her daughter, Emily, faced down, seizing. It was a terrifying experience for Jennifer to find her daughter blue, unresponsive and seizing. Jennifer quickly picked her up, placed her on her side, and contacted 911. While at the hospital, Jennifer found out that her daughter’s seizure had lasted over ten minutes. After a few hours, Emily was discharged with emergency medication. As a result, Jennifer decided to have Emily sleep in her bedroom in fear of her daughter having another late-night seizure. She wishes she had a device  of some sort that would alert her whenever her daughter’s seizures would start and track how long each lasted. With EDNA Care, Jennifer would be alerted immediately should Emily experience another seizure. EDNA Care will also alert Emily’s health care physician if her seizures last longer than expected.</p>
+        <div>
+          <p>&nbsp;</p>
+          <h4><span style="font-weight: 400;">Testing Strategy - Functional Requirements&nbsp;</span></h4>
+            <table>
+            <tbody>
+            <tr>
+            <td>
+            <p><span style="font-weight: 400;">Requirement #</span></p>
+            </td>
+            <td>
+            <p><span style="font-weight: 400;">Description</span></p>
+            </td>
+            <td>
+            <p><span style="font-weight: 400;">In Scope?</span></p>
+            </td>
+            <td>
+            <p><span style="font-weight: 400;">Testing Strategy</span></p>
+            </td>
+            </tr>
+            <tr>
+            <td>
+            <p><span style="font-weight: 400;">FR-1</span></p>
+            </td>
+            <td>
+            <p><span style="font-weight: 400;">When an entity is created or edited within a data source, an event will be dispatched to notify the ETL Utility that a task should be run</span></p>
+            <p><span style="font-weight: 400;">JSON format</span></p>
+            </td>
+            <td>
+            <p><span style="font-weight: 400;">Yes</span></p>
+            </td>
+            <td>
+            <p><span style="font-weight: 400;">Trigger the extraction by creating and editing a data source and validate event was generated</span></p>
+            </td>
+            </tr>
+            <tr>
+            <td>
+            <p><span style="font-weight: 400;">FR-2</span></p>
+            </td>
+            <td>
+            <p><span style="font-weight: 400;">The system shall be capable of extracting data from a legacy SQL database</span></p>
+            </td>
+            <td>
+            <p><span style="font-weight: 400;">Yes</span></p>
+            </td>
+            <td>
+            <p><span style="font-weight: 400;">Create and modify a record existing in the legacy SQL database</span></p>
+            </td>
+            </tr>
+            <tr>
+            <td>
+            <p><span style="font-weight: 400;">FR-3</span></p>
+            </td>
+            <td>
+            <p><span style="font-weight: 400;">The system shall be capable of extracting data in the XML format</span></p>
+            </td>
+            <td>
+            <p><span style="font-weight: 400;">Yes</span></p>
+            </td>
+            <td>
+            <p><span style="font-weight: 400;">Create and modify a record existing in XML format</span></p>
+            </td>
+            </tr>
+            <tr>
+            <td>
+            <p><span style="font-weight: 400;">FR-4</span></p>
+            </td>
+            <td>
+            <p><span style="font-weight: 400;">The system shall be capable of extracting data in the CSV format</span></p>
+            </td>
+            <td>
+            <p><span style="font-weight: 400;">Yes</span></p>
+            </td>
+            <td>
+            <p><span style="font-weight: 400;">Create and modify a record existing in CSV format</span></p>
+            </td>
+            </tr>
+            <tr>
+            <td>
+            <p><span style="font-weight: 400;">FR-5</span></p>
+            </td>
+            <td>
+            <p><span style="font-weight: 400;">The system shall be capable of extracting data in the JSON format</span></p>
+            </td>
+            <td>
+            <p><span style="font-weight: 400;">Yes</span></p>
+            </td>
+            <td>
+            <p><span style="font-weight: 400;">Create and modify a record existing in JSON format</span></p>
+            </td>
+            </tr>
+            <tr>
+            <td>
+            <p><span style="font-weight: 400;">FR-6</span></p>
+            </td>
+            <td>
+            <p><span style="font-weight: 400;">The system shall transform the extracted data based on a set of rules defined in a transformation module</span></p>
+            </td>
+            <td>
+            <p><span style="font-weight: 400;">Yes</span></p>
+            </td>
+            <td>
+            <p><span style="font-weight: 400;">Ensure that the data created or modified includes all data types that are transformed</span></p>
+            </td>
+            </tr>
+            <tr>
+            <td>
+            <p><span style="font-weight: 400;">FR-7</span></p>
+            </td>
+            <td>
+            <p><span style="font-weight: 400;">Transformation modules shall pass the data along to next module, or the load module if transformation is complete</span></p>
+            </td>
+            <td>
+            <p><span style="font-weight: 400;">Yes</span></p>
+            </td>
+            <td>
+            <p><span style="font-weight: 400;">Validate that data is inserted into the target system after appropriate transformations take place</span></p>
+            </td>
+            </tr>
+            <tr>
+            <td>
+            <p><span style="font-weight: 400;">FR-8</span></p>
+            </td>
+            <td>
+            <p><span style="font-weight: 400;">The system shall be capable of loading the transformed data into an SQL database</span></p>
+            </td>
+            <td>
+            <p><span style="font-weight: 400;">Yes</span></p>
+            </td>
+            <td>
+            <p><span style="font-weight: 400;">Validate that the data which was created or modified can be loaded in a SQL database</span></p>
+            </td>
+            </tr>
+            <tr>
+            <td>
+            <p><span style="font-weight: 400;">FR-9</span></p>
+            </td>
+            <td>
+            <p><span style="font-weight: 400;">The system shall be capable of loading the transformed data into an XML file</span></p>
+            </td>
+            <td>
+            <p><span style="font-weight: 400;">Yes</span></p>
+            </td>
+            <td>
+            <p><span style="font-weight: 400;">Validate that the data which was created or modified&nbsp; can be loaded in a XML file</span></p>
+            </td>
+            </tr>
+            <tr>
+            <td>
+            <p><span style="font-weight: 400;">FR-10</span></p>
+            </td>
+            <td>
+            <p><span style="font-weight: 400;">The system shall be capable of loading the transformed data into a JSON file</span></p>
+            </td>
+            <td>
+            <p><span style="font-weight: 400;">Yes</span></p>
+            </td>
+            <td>
+            <p><span style="font-weight: 400;">Validate that the data which was created or modified&nbsp; can be loaded in a JSON file</span></p>
+            </td>
+            </tr>
+            <tr>
+            <td>
+            <p><span style="font-weight: 400;">FR-11</span></p>
+            </td>
+            <td>
+            <p><span style="font-weight: 400;">The system shall be capable of loading the transformed data into a CSV file</span></p>
+            </td>
+            <td>
+            <p><span style="font-weight: 400;">Yes</span></p>
+            </td>
+            <td>
+            <p><span style="font-weight: 400;">Validate that the data which was created or modified&nbsp; can be loaded in a CSV file</span></p>
+            </td>
+            </tr>
+            </tbody>
+            </table>
+            <p>&nbsp;</p>
+            <h4><span style="font-weight: 400;">Testing Strategy - Non-Functional Requirements&nbsp;</span></h4>
+            <p>&nbsp;</p>
+            <table>
+            <tbody>
+            <tr>
+            <td>
+            <p><span style="font-weight: 400;">Requirement #</span></p>
+            </td>
+            <td>
+            <p><span style="font-weight: 400;">Description</span></p>
+            </td>
+            <td>
+            <p><span style="font-weight: 400;">In Scope?</span></p>
+            </td>
+            <td>
+            <p><span style="font-weight: 400;">Testing Strategy</span></p>
+            </td>
+            </tr>
+            <tr>
+            <td>
+            <p><span style="font-weight: 400;">NFR-1</span></p>
+            </td>
+            <td>
+            <p><span style="font-weight: 400;">The system shall be flexibly extended and maintainable through a plug-gable modular interface</span></p>
+            </td>
+            <td>
+            <p><span style="font-weight: 400;">No</span></p>
+            </td>
+            <td>
+            <p><span style="font-weight: 400;">This requirement is a quality criteria that is out of scope for this test plan.</span></p>
+            </td>
+            </tr>
+            <tr>
+            <td>
+            <p><span style="font-weight: 400;">NFR-2</span></p>
+            </td>
+            <td>
+            <p><span style="font-weight: 400;">The system shall be based on an audit that has 99% or greater transformation accuracy.</span></p>
+            </td>
+            <td>
+            <p><span style="font-weight: 400;">Yes</span></p>
+            </td>
+            <td>
+            <p><span style="font-weight: 400;">Testing will include edge case scenarios and &ldquo;bad data&rdquo; to test the accuracy of the transformation.</span></p>
+            </td>
+            </tr>
+            <tr>
+            <td>
+            <p><span style="font-weight: 400;">NFR-3</span></p>
+            </td>
+            <td>
+            <p><span style="font-weight: 400;">The ETL shall function as long as the platform hosting it is functioning and will come back into operation within 2 minutes after the host in case of power or other types of interruptions.</span></p>
+            </td>
+            <td>
+            <p><span style="font-weight: 400;">No</span></p>
+            </td>
+            <td>
+            <p><span style="font-weight: 400;">This requirement involves the platform hosting the utility and is out of scope for this test plan.</span></p>
+            </td>
+            </tr>
+            <tr>
+            <td>
+            <p><span style="font-weight: 400;">NFR-4</span></p>
+            </td>
+            <td>
+            <p><span style="font-weight: 400;">The system shall be testable using preset data sources and known output data results.</span></p>
+            </td>
+            <td>
+            <p><span style="font-weight: 400;">Yes</span></p>
+            </td>
+            <td>
+            <p><span style="font-weight: 400;">All specified data sources shall be verified with new and modified data and will be verified by loading these changes into each specified target.</span></p>
+            </td>
+            </tr>
+            <tr>
+            <td>
+            <p><span style="font-weight: 400;">NFR-5</span></p>
+            </td>
+            <td>
+            <p><span style="font-weight: 400;">This system's modules will be highly reusable in similar types of ETL environments.</span></p>
+            </td>
+            <td>
+            <p><span style="font-weight: 400;">No</span></p>
+            </td>
+            <td>
+            <p><span style="font-weight: 400;">This requirement attunes to a quality attribute that would be difficult to verify.</span></p>
+            </td>
+            </tr>
+            <tr>
+            <td>
+            <p><span style="font-weight: 400;">NFR-6</span></p>
+            </td>
+            <td>
+            <p><span style="font-weight: 400;">The system shall support event reporting to a Syslog server.</span></p>
+            </td>
+            <td>
+            <p><span style="font-weight: 400;">Yes</span></p>
+            </td>
+            <td>
+            <p><span style="font-weight: 400;">&ldquo;Bad data&rdquo; will be fed through the utility to ensure informational logs are generated.</span></p>
+            </td>
+            </tr>
+            <tr>
+            <td>
+            <p><span style="font-weight: 400;">NFR-7</span></p>
+            </td>
+            <td>
+            <p><span style="font-weight: 400;">The system shall support an interface to email for critical alert messaging.</span></p>
+            </td>
+            <td>
+            <p><span style="font-weight: 400;">No</span></p>
+            </td>
+            <td>
+            <p><span style="font-weight: 400;">This requirement requires a user interface which was not included in the initial architecture design, so it is out of scope for this test plan.</span></p>
+            </td>
+            </tr>
+            <tr>
+            <td>
+            <p><span style="font-weight: 400;">NFR-8</span></p>
+            </td>
+            <td>
+            <p><span style="font-weight: 400;">The system shall comply with Privacy compliance requirements.</span></p>
+            </td>
+            <td>
+            <p><span style="font-weight: 400;">No</span></p>
+            </td>
+            <td>
+            <p><span style="font-weight: 400;">This requirement involves the platform hosting the system and is out of scope for this test plan.</span></p>
+            </td>
+            </tr>
+            <tr>
+            <td>
+            <p><span style="font-weight: 400;">NFR-9</span></p>
+            </td>
+            <td>
+            <p><span style="font-weight: 400;">The data in the file to be transformed will adhere to the requirements of the data type, or the system shall abort the load process. In this case, an event shall be dispatched to the Syslog server.</span></p>
+            </td>
+            <td>
+            <p><span style="font-weight: 400;">Yes</span></p>
+            </td>
+            <td>
+            <p><span style="font-weight: 400;">&ldquo;Bad data&rdquo; will be fed through the utility to ensure informational logs are generated.</span></p>
+            </td>
+            </tr>
+            </tbody>
+            </table>
+            <p>&nbsp;</p>
+        </div>
         </div>
       </div>
    
