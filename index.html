@@ -8,7 +8,7 @@
   <meta name="description" content="">
   <meta name="author" content="">
 
-  <title>EDNA - Project 1</title>
+  <title>Test Plan for ETL Utility System - Project 2</title>
 
   <!-- Bootstrap core CSS -->
   <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
@@ -23,29 +23,23 @@
   <!-- Navigation -->
   <nav class="navbar fixed-top navbar-expand-lg navbar-light bg-primary fixed-top">
     <div class="container">
-      <a class="navbar-brand" href="index.html">EDNA Care</a>
+      <a class="navbar-brand" href="index.html">Test Plan for ETL Utility System</a>
       <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
       <div class="collapse navbar-collapse" id="navbarResponsive">
         <ul class="navbar-nav ml-auto">
           <li class="nav-item">
-            <a class="nav-link" href="index.html">Background</a>
+            <a class="nav-link" href="index.html">Introduction</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="use-cases.html">Use Cases</a>
+            <a class="nav-link" href="scope-strat.html">Testing Scope & Strategy</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="requirements.html">Requirements</a>
+            <a class="nav-link" href="it-test.html">Integration Testing</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="hl-design.html">High-Level Design</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="modules.html">Modules</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="rationale.html">Design Rationale</a>
+            <a class="nav-link" href="sys-val.html">System & Validation Testing</a>
           </li>
           <li class="nav-item">
             <a class="nav-link" href="conclusion.html">Conclusion</a>
@@ -68,18 +62,24 @@
     <div>
       <br>
       <div>
-      <h2 class="my-4">Enhanced Digital Nurse Assistant (EDNA) Care System</h2>
-      <h4>William Griffith, Rachel Halvordson, and Latanya Lewis</h4>
+      <h2 class="my-4">Test Plan for ETL Utility System</h2>
+      <h4>Original Project Authors: Daniel Marlowe, Stephen Peirce, Jason Dean</h4>
+      <h4>Design Reference:</h4><a href="https://sites.google.com/view/etl-utility/home">Project</a>
+      <h4>Authors of Test Plan: Latanya Lewis, William Griffith, Rachel Halvordson</h4>
+      <h4>Version 1.0, Drafted 11/14/2020</h4>
     </div>
   </br>
     <div>
-      <h3>Background</h3>
-      <p>Technology has become an essential and vital component of our everyday living and influences how we all live and work. Generally, technology has a positive effect as it helps us manage and control our daily routines. However, modern-day technology has an important role to play in domains such as overcoming the many challenges facing health and social care. Many caregivers have the challenge of ensuring the proper care of their elderly or disabled family members. Given the current COVID-19 pandemic, the need to remotely monitor their loved one's health would offer an efficient solution that will allow the caregiver to monitor important health-related data.</p>
-      <p>The EDNA Care System is a mobile and web based application that will offer caregivers an effective way to remotely monitor and correctly assess their loved ones' health status and location, receive health alerts, and provide medical reminders in real-time. It will use data streaming technology to integrate with existing wearables to collect as much health data as possible, aggregate it in a secure manner and also in real time make decisions on when to 'smart alert' providers, caregivers and even emergency services. Furthermore this will allow for the next level of telemedicine, providing almost a physical lite over time, allowing earlier intervention and better data driven decisions. This will need the ability to dynamically update algorithms, change the way data is stored, and how many endpoints this can collect data from.</p>
-      <p>Currently, patients only communicate with their doctors when they go for visits and receive their tests. Most of the test results are stored on paper or another website application, but that becomes the ending point until their next visit (see Figure 1). With EDNA Care, another source of data becomes available to not just doctors but also care providers and/or family members. In addition, this data can be input and then analyzed by EDNA’s algorithms to help alert these groups when an issue such as low blood oxygen is detected, instead of manually using a paper trail and missing potential medical issues (see Figure 2).</p>
+      <h3>Purpose</h3>
+      <p>The purpose of this ETL Utility Test Plan is to outline and establish a minimum baseline for the testing efforts of this system. This plan contains the summary of the system's architecture, scope of the testing involved, a testing matrix to address the requirements, and a conclusion with outlined exit criteria. Additionally, this plan describes the types of testing involved, and is an iterative document that is modified as new requirements are outlined or discovered.</p>
+      <h3>Scope</h3>
+      <p>The scope of this test plan contains test cases for integration testing and system validation testing. This document provides an outline of the system as reference, including a summary architecture and requirements, as well as an outline of the test cases involved to meet these requirements and both test phases.</p>
+      <h3>System Summary & Overview</h3>
+      <p>The Extract-Transform-Load (ETL) utility is a web-based system that will allow data from a legacy database to be transformed into data used in modern systems that academic institutions can utilize for day to day tasks such as managing student records, online class delivery, and communicating with students. The utility’s design uses an event-driven architecture combined with a pipes-and-filters (primarily pipes) architecture and an object-oriented architecture. The architecture design contains three modules that will be tested against: Extract/Data-Entry Event, Transform, and Load.</p>
+      <p>The Extract/Data-Entry Event module watches for changes and dispatches an event when they occur. When the watcher notifies the utility of a change, the utility will then extract the new data from the specified source and package it for delivery to the Transformation Pipeline. The Transform module is the process of converting data entered from the legacy database and files into a standardized format and inserting the true values of the field. Lastly, the Load module will take the transformed data, collect load objects, and place the data into the respective destinations. </p>
     </div>
-    <img src="./images/figure1.PNG" alt="figure 1">
-    <img src="./images/figure2.PNG" alt="figure 2">
+    <img src="./images/diagram1.PNG" alt="diagram 1">
+    <h5>Figure 1: Basic flow diagram of an ETL System</h5>
     </div>
  
   <!-- /.row -->
