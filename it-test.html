@@ -59,7 +59,7 @@
         <h2>Integration Testing</h2>
         <p>Integration test is the first step of the test plan where phases of the system are identified,  and the system components are tested within those phases. The ETL Utility system has a clear distinction between three different modules: Extraction, Transformation, and Loading. Additionally, each module of the utility is dependent on the previous module, creating a need to build and test the extraction module first and the load module last. Given these conditions, the system's integration testing will occur in three phases, each corresponding to a module according to the system architecture. </p>
         <p>Dividing the testing process into separate phases will ensure that testing can be focused appropriately and align with the critical path of the system’s overall development. This also ensures that defects are identified early and can easily be attributed to the currently tested module.</p>
-        <p>Following this approach, the integration testing process begins with the module that is required for the other two modules to function, Extraction. Following extraction, transformation will be tested, and lastly, loading. Since this test plan follows the dependency path between these modules, the foundations will be solidified, and high priority defects addressed before proceeding to the next module. Brief testing strategies per each module have been identified</p>
+        <p>Following this approach, the integration testing process begins with the module that is required for the other two modules to function, Extraction. Following extraction, transformation will be tested, and lastly, loading. Since this test plan follows the dependency path between these modules, the foundations will be solidified, and high priority defects addressed before proceeding to the next module. Brief testing strategies per each module have been identified:</p>
         <br/>
         <ul>
           <li>Extraction: During the integration testing for extraction, each type of source data and data fields will be verified against the utility to ensure that the module works as expected. </li>
@@ -69,7 +69,7 @@
         <br/>
         <h3>Extraction</h3>
         <h5>Summary Test Procedure</h5>
-        <p>The purpose of the extraction module is to ensure the system can source data from multiple file formats to be then transformed. The foundation for this system is to identify new or modified data from the source systems so that the target system can use it.  The other system modules require that the extraction module be complete and correct for the system to function as a whole. Thus, the extraction module should be tested first, and the test cases identified highlight each source system identified in the requirements. Figure 2 shows the modules that form the Extract Subsystem. The arrows represent the order of integration, i.e., integration testing.</p>
+        <p>The purpose of the extraction module is to ensure the system can source data from multiple file formats to be then transformed. The foundation for this system is to identify new or modified data from the source systems so that the target system can use it.  The other system modules require that the extraction module be complete and correct for the system to function as a whole. Thus, the extraction module should be tested first, and the test cases identified highlight each source system identified in the requirements. Figure 2 shows the modules that form the Extract Subsystem. The arrows represent the order of operations and how the implmented modules interact.</p>
         <img src="./images/Extraction.png" alt="figure 2">
         <h6>Figure 2. Module of Extract Subsystem</h6>
         <h5>Test Cases</h5>
@@ -180,7 +180,7 @@
           <br/>
           <h3>Transformation</h3>
         <h5>Summary Test Procedure</h5>
-        <p>The purpose of the transformation module is to ensure the system can convert the extracted data into the necessary formats so that it can be loaded in another data source. Figure 3 shows the modules that will form the Transform Subsystem. </p>
+        <p>The purpose of the transformation module is to transform the ingested data to another format for downstream processes. Testing will involve ensuring that the system can convert the extracted data into the necessary formats so that it can be loaded in another data source. Figure 3 shows the modules that will form the Transform Subsystem. </p>
         <img src="./images/Transform.png" alt="figure 3">
         <h6>Figure 3. Module of Tranform Subsystem</h6>
         <h5>Test Cases</h5>
@@ -247,7 +247,7 @@
           <br/>
           <h3>Loading</h3>
         <h5>Summary Test Procedure</h5>
-        <p>The purpose of the load module is to load the transformed data using a collection of load objects and load that data into its respective destination. Figure 4 shows the modules that will form the Load Subsystem.</p>
+        <p>The purpose of the load module is to load the transformed data using a collection of load modules/processors to marshal the data into its respective destination/format. Tesing that the system can load the proper data and for each format type is needed to ensure this module meets requirements. Figure 4 shows the modules that will form the Load Subsystem.</p>
         <img src="./images/Load.png" alt="figure 3">
         <h6>Figure 4. Module of Load</h6>
         <h5>Test Cases</h5>
